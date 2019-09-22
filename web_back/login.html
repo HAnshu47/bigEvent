@@ -40,7 +40,7 @@
               <h4 class="modal-title">Modal title</h4>
             </div>
             <div class="modal-body">
-              <p >用户名或密码不能为空</p>
+              <p id="pResult">用户名或密码不能为空</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
@@ -55,6 +55,7 @@
     <script src="./js/jquery-1.12.4.min.js"></script>
 <script src="./js/bootstrap/js/bootstrap.min.js"></script>
 <script src="./js/utils/config.js"></script>
+<script src="./js/utils/user.js"></script>
 <script>
         $('.input_sub').click(function () {
             var userName = $('.input_txt').val();
@@ -63,21 +64,14 @@
                 $('.modal').modal('show')
                 return;
             }
-            $.post(
-                user.login,
-                 {
-                    user_name : userName,
-                    password : passWord,
-                },
-                function(res){
-                    if(res.code==200){
-                        alert('登陆成功,正在跳转')
-                        window.location.href='./index.html'
-                    }else{
-                        alert(res.msg)
-                    }
-                }
-            )
+           user.login(userName,passWord,function(res){
+               if(res.code==200){
+                   window.location.href='./index.html';
+               }else{
+                   $('#pResult').text(res.msg);
+                   $('.modal').modal('show')
+               }
+           })
         })
     </script>
 

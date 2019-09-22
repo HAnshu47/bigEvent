@@ -1,0 +1,24 @@
+var user={
+    login:function(userName,password,callBack){
+        $.post(
+            UrlList.user_login,
+            {
+                user_name:userName,
+                password:password
+            },
+            function(res){
+                callBack(res)
+            }
+        );
+    },
+    logout:function(callBack){
+        $.post(UrlList.user_logout,function(res){
+            callBack(res);
+        })
+    },
+    getInfo:function(callBack){
+        $.get(UrlList.user_grtInfo,function(res){
+            callBack(res)
+        })
+    }
+}
