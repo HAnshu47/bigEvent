@@ -152,7 +152,7 @@
         })
         $('#btnDoLogout').click(function () {
             user.logout(function (res) {
-                if (res.code == 200) {
+                if (res.code === 200) {
                     window.location.href = './login.html'
                 }
             })

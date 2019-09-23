@@ -1,4 +1,10 @@
 var user={
+    /**
+     * 
+     * @param {*} userName 用户名
+     * @param {*} password 密码
+     * @param {*} callBack 回调函数
+     */
     login:function(userName,password,callBack){
         $.post(
             UrlList.user_login,
