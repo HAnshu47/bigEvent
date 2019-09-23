@@ -68,7 +68,7 @@
                     <h4 class="modal-title">确认框</h4>
                 </div>
                 <div class="modal-body">
-                    <p>你确定要退出吗？</p>
+                    <p id="pRequst">你确定要退出吗？</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -148,12 +148,17 @@
             })
         })
         $('#loginOut').click(function () {
+            // window.location.href = './login.html'
             $('.modal').modal('show');
-        })
+        });
         $('#btnDoLogout').click(function () {
             user.logout(function (res) {
-                if (res.code === 200) {
-                    window.location.href = './login.html'
+                if (res.code == 200) {
+                    window.location.href = './login.html';
+                }else if(res.code==400){
+                    $('.modal').modal('show')
+                    $('#pRequst').text(res.msg)
+                    $('#btnDoLogout').text('确定')
                 }
             })
         })
